@@ -14,7 +14,8 @@ function App() {
       navigator.mediaDevices.getUserMedia = function (constraints) {
         // First get ahold of the legacy getUserMedia, if present
         var getUserMedia =
-          navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+          (navigator as any).webkitGetUserMedia! ||
+          (navigator as any).mozGetUserMedia!;
 
         // Some browsers just don't implement it - return a rejected promise with an error
         // to keep a consistent interface
